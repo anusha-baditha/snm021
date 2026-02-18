@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Document</title>{% endblock %}
+    <link rel="stylesheet" href="/static/Dashboard.css">
+    {% block addcss %}{% endblock %}
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}    
+    {% for message in messages %}
+     <center style="color:darkblue" >{{ message }}</center>
+    {% endfor %}    
+  {% endif %}
+{% endwith %} 
+<nav class="navbar">
+
+  <div class="nav-left">
+      <div class="one">
+          <button class="btn">Notes</button>
+          <div class="content">
+              <a href="{{url_for('addnotes')}}">Add Notes</a>
+              <a href="{{url_for('viewallnotes')}}">View All Notes</a>
+              <a href="{{url_for('getexceldata')}}">Get Excel</a>
+          </div>
+      </div>
+
+      <div class="one">
+          <button class="btn">Files</button>
+          <div class="content">
+              <a href="{{url_for('fileupload')}}">Upload Files</a>
+              <a href="{{url_for('viewallfiles')}}">View All Files</a>
+          </div>
+      </div>
+  </div>
+
+  <div class="nav-right">
+      {{session.get('user')}}
+      <form method="post" action="{{url_for('search')}}">
+          <input type="text" name="search_value" placeholder="Search">
+      </form>
+      <a href="{{url_for('logout')}}"><button class="btn1">Logout</button></a>
+  </div>
+
+</nav>
+
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* Page wrapper (prevents CSS conflict) */
+.viewallnotes-page {
+    margin-top: 90px; /* space for fixed navbar */
+    padding: 30px;
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+/* Table container */
+.table-container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Heading */
+.table-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Table styling */
+.notes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table header */
+.notes-table thead {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.notes-table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Table body */
+.notes-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Row hover effect */
+.notes-table tbody tr:hover {
+    background-color: #f2f7ff;
+}
+
+/* No notes message */
+.no-notes {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+}

@@ -1,0 +1,59 @@
+{% extends 'dashboard.html' %}
+{% block title %}<title>File Upload</title>{% endblock %}
+
+{% block addcss %}
+<link rel="stylesheet" href="/static/fileupload.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Upload File</h2>
+
+    <form method="post" id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="file" id="fileInput">
+        </div>
+
+        <button type="submit">Upload File</button>
+    </form>
+
+    <div class="files" id="fileList"></div>
+</div>
+
+<script>
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please select a file!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("{{ url_for('fileupload') }}", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const fileDiv = document.createElement("div");
+            fileDiv.classList.add("file-item");
+            fileDiv.innerHTML = `
+                <p><strong>${file.name}</strong> uploaded successfully.</p>
+            `;
+            document.getElementById("fileList").appendChild(fileDiv);
+            fileInput.value = "";
+        } else {
+            alert("Error uploading file");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <b>{{ message }}</b>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <center>
+        <form method="post">
+            <label>User Email:</label><br><br>
+            <input type="text" name="useremail" /><br>
+            <label>User password:</label><br>
+            <input type="password" name="userpassword"/><br>
+            <button>submit</button>
+        </form>
+        <a href="{{url_for('forgot')}}">forgotpassword</a>
+        </center>
+
+</body>
+</html>
