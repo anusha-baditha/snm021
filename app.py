@@ -7,7 +7,7 @@ from stoken import endata,dndata
 from io import BytesIO
 import re
 from mysql.connector import (connection)
-mydb=connection.MySQLConnection(user='root',host='localhost',password='admin',db='snmdb')
+mydb=connection.MySQLConnection(user='flaskuser',host='localhost',password='password',db='flaskdb')
 app=Flask(__name__)
 excel.init_excel(app)
 app.config['SESSION_TYPE']='filesystem'
@@ -439,4 +439,3 @@ def newpassword(data):
             else:
                 return jsonify({"message":"ok"})
     return render_template('newpassword.html',data=data)
-app.run(debug=True,use_reloader=True)
